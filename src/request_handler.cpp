@@ -19,6 +19,13 @@ void request_handler::handle_request(const request &req, reply &rep)
         rep = reply::stock_reply(reply::bad_request);
         return;
     }
+	
+    // ignore parameters
+    std::size_t params_pos = req_path.find_last_of("?");
+    if (params_pos != std::string::npos)
+    {
+        req_path = req_path.substr(0, params_pos);
+    }
 
     if (req_path[req_path.size() - 1] == '/')
     {
