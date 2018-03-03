@@ -5,6 +5,8 @@
 #include <set>
 #include <functional>
 #include <thread>
+#include <unistd.h>
+#include <signal.h>
 
 #include "http_server.h"
 
@@ -37,6 +39,10 @@ int main(int argc, char **argv)
             default: break;
         }
     }
+	
+	// daemon
+	signal(SIGHUP, SIG_IGN);
+	daemon(0, 0);
 
     try
     {
