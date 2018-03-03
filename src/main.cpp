@@ -7,6 +7,7 @@
 #include <thread>
 #include <unistd.h>
 #include <signal.h>
+#include <unistd.h>
 
 #include "http_server.h"
 
@@ -34,6 +35,12 @@ int main(int argc, char **argv)
 
             case 'd':
                 directory = optarg;
+                if(!directory.empty())
+                {
+                    char buf[PATH_MAX];
+                    realpath(directory.c_str(), buf);
+                    directory = buf;
+                }
                 break;
 
             default: break;
