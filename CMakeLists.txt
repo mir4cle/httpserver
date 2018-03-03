@@ -10,7 +10,7 @@ include_directories(src)
 include_directories(asio-1.11.0/include)
 
 # definitions
-add_definitions(-DASIO_STANDALONE)
+add_definitions(-DASIO_STANDALONE -std=c++11)
 
 # sourses
 file(GLOB SOURCES "src/*.cpp")
